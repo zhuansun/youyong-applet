@@ -3,8 +3,9 @@ import urlConfig from './etc/config'
 //app.js
 App({
 
-  //为了确保token被捕获之后，不会恶意请求。 需要在生成token的时候，加上ip地址限制。
+  //为了确保token被捕获之后，不会恶意请求。 需要在生成token的时候，加上ip吧。
   //只有通过小程序的App.onLaunch才可以生成token
+  //加上ip限制的话，就会有一个问题，如果用户在使用期间切换了网络，需要提醒用户： 检测到您的网络发生变化，为了您的安全，请重新登陆
 
 
   onLaunch: function () {
@@ -31,8 +32,23 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.log(res.code)
-        console.log(res)
+        wx.request({
+          url: urlConfig.basePath +'/api/user/sign/in', // 仅为示例，并非真实的接口地址
+          data: {
+            code: res.code
+          },
+          method: "POST",
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success(res) {
+            if(res.code == 200){
+              console.log("success");
+            }else{
+              console.log("fail");
+            }
+          }
+        })
       }
     })
     // 获取用户信息
