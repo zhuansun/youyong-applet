@@ -15,8 +15,11 @@ Page({
     hasLogin: false
   },
 
-  toUse: function (e) {
+  toUse: function(e) {
     console.log("跳转到首页，准备使用了。。。。。。");
+    wx.redirectTo({
+      url: '../main/index'
+    })
   },
 
   login: function(e) {
@@ -46,12 +49,20 @@ Page({
                 current: 2,
                 hasLogin: true
               })
+              //将token保存下来
+              wx.setStorageSync('token', res.data.vo)
             } else {
               $Message({
                 content: res.data.msg,
                 type: 'error'
               });
             }
+          },
+          fail() {
+            $Message({
+              content: "请求失败",
+              type: 'error'
+            });
           }
         })
       }
@@ -88,6 +99,13 @@ Page({
         }
       })
     }
+
+    let token = wx.getStorageSync('token');
+    console.log(token);
+    if (token) {
+      //token存在,直接跳转首页
+      this.toUse();
+    }
   },
 
 
@@ -96,7 +114,10 @@ Page({
     console.log(app.urlConfig.basePath)
     console.log(e.detail.userInfo)
     if (e.detail.userInfo === undefined) {
-      console.log("您没有授权")
+      $Message({
+        content: "已拒绝授权",
+        type: 'warning'
+      });
     } else {
       app.globalData.userInfo = e.detail.userInfo
       this.setData({
@@ -105,7 +126,7 @@ Page({
         current: 1
       })
       $Message({
-        content: "头像信息获取成功",
+        content: "授权获取成功",
         type: 'success'
       });
     }

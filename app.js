@@ -4,26 +4,6 @@ import urlConfig from './etc/config'
 App({
 
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    wx.getSystemInfo({
-      success(res) {
-        console.log(res.brand)
-        console.log(res.model)
-        console.log(res.pixelRatio)
-        console.log(res.windowWidth)
-        console.log(res.windowHeight)
-        console.log(res.language)
-        console.log(res.version)
-        console.log(res.platform)
-      }
-    })
-
-
-   
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -53,7 +33,6 @@ App({
   globalData: {
     userInfo: null
   },
-
    //声明urlConfig，以便于在后续所有页面都能使用
   urlConfig, 
 })

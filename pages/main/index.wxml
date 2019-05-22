@@ -1,0 +1,14 @@
+<!--index.wxml-->
+<view class="container">
+  <view>
+    <i-message id="message" />
+  </view>
+
+  <view class="maininfo">
+    <block>
+      <image class="userinfo-avatar" src="https://i.loli.net/2017/08/21/599a521472424.jpg" mode="cover"></image>
+      <text class="userinfo-nickname">还不知道你是谁</text>
+    </block>
+  </view>
+
+</view>
