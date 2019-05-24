@@ -1,4 +1,3 @@
-import urlConfig from '../../etc/config'
 const {
   $Message
 } = require('../../dist/base/index');
@@ -29,7 +28,7 @@ Page({
         const _this = this;
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         wx.request({
-          url: urlConfig.basePath + '/api/user/sign/in',
+          url: app.urlConfig.basePath + '/api/user/sign/in',
           data: {
             code: res.code
           },
@@ -115,10 +114,10 @@ Page({
   },
 
 
+  /**
+   * 获取用户的微信信息头像和昵称
+   */
   getUserAvatarAndName: function(e) {
-    console.log(e)
-    console.log(app.urlConfig.basePath)
-    console.log(e.detail.userInfo)
     if (e.detail.userInfo === undefined) {
       $Message({
         content: "已拒绝授权",

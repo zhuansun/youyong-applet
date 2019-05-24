@@ -2,7 +2,6 @@
   "pages": [
     "pages/index/index",
     "pages/main/index",
-    "pages/service/index",
     "pages/mine/index"
   ],
   "window": {
@@ -22,12 +21,6 @@
         "iconPath": "assets/images/iconfont-home.png",
         "selectedIconPath": "assets/images/iconfont-home-active.png",
         "text": "首页"
-      },
-      {
-        "pagePath": "pages/service/index",
-        "iconPath": "assets/images/iconfont-list.png",
-        "selectedIconPath": "assets/images/iconfont-list-active.png",
-        "text": "资源库"
       },
       {
         "pagePath": "pages/mine/index",
