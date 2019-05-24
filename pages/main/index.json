@@ -1,8 +1,13 @@
 {
   "usingComponents": {
-    "i-button": "../../dist/button/index",
-    "i-message": "../../dist/message/index",
-    "i-steps": "../../dist/steps/index",
-    "i-step": "../../dist/step/index"
-  }
+    "i-card": "../../dist/card/index",
+    "i-row": "../../dist/row/index",
+    "i-col": "../../dist/col/index",
+    "i-panel": "../../dist/panel/index"
+  },
+
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "首页",
+  "disableScroll": true
+
 }

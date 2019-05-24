@@ -1,0 +1,20 @@
+{
+  "usingComponents": {
+    "i-button": "../../dist/button/index",
+    "i-message": "../../dist/message/index",
+    "i-tabs": "../../dist/tabs/index",
+    "i-tab": "../../dist/tab/index",
+    "i-swipeout": "../../dist/swipeout/index",
+    "i-cell-group": "../../dist/cell-group/index",
+    "i-cell": "../../dist/cell/index",
+    "i-card": "../../dist/card/index",
+    "i-icon": "../../dist/icon/index",
+    "i-action-sheet": "../../dist/action-sheet/index"
+  },
+
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "资源库",
+  "disableScroll": true
+
+  
+}

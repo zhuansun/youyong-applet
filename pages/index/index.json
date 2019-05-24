@@ -4,5 +4,10 @@
     "i-message": "../../dist/message/index",
     "i-steps": "../../dist/steps/index",
     "i-step": "../../dist/step/index"
-  }
+  },
+
+
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "登陆",
+  "disableScroll": true
 }

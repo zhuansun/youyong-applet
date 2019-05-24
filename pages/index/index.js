@@ -17,7 +17,7 @@ Page({
 
   toUse: function(e) {
     console.log("跳转到首页，准备使用了。。。。。。");
-    wx.redirectTo({
+    wx.switchTab({
       url: '../main/index'
     })
   },
@@ -59,6 +59,12 @@ Page({
             }
           },
           fail() {
+            _this.setData({
+              current: 2,
+              hasLogin: true
+            })
+            //将token保存下来
+            wx.setStorageSync('token', "0000")
             $Message({
               content: "请求失败",
               type: 'error'

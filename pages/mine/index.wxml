@@ -1,0 +1,21 @@
+<!--index.wxml-->
+<view class="container">
+  <view>
+    <i-message id="message" />
+  </view>
+
+  <view class="userinfo">
+    <block wx:if="{{!hasUserInfo && canIUse}}">
+      <image class="userinfo-avatar" src="https://i.loli.net/2017/08/21/599a521472424.jpg" mode="cover"></image>
+      <text class="userinfo-nickname">还不知道你是谁</text>
+    </block>
+    <block wx:else>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+
+  <view class="showDetail">
+    Hello World
+  </view>
+</view>
