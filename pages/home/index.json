@@ -4,11 +4,13 @@
     "i-row": "../../dist/row/index",
     "i-col": "../../dist/col/index",
     "i-panel": "../../dist/panel/index",
-    "i-modal": "../../dist/modal/index"
+    "i-modal": "../../dist/modal/index",
+    "i-message": "../../dist/message/index"
   },
 
   "navigationBarBackgroundColor": "#fff",
   "navigationBarTitleText": "首页",
-  "disableScroll": true
+  "disableScroll": true,
+  "enablePullDownRefresh": true
 
 }

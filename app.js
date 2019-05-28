@@ -24,6 +24,8 @@ App({
       }
     })
   },
+
+
   onShow: function () {
     console.log("app.js ---onShow---");
   },
@@ -31,7 +33,8 @@ App({
     console.log("app.js ---onHide---");
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    errorMessage: null//用于当从其他页面跳转到登陆页面时，在登录页面显示错误信息
   },
    //声明urlConfig，以便于在后续所有页面都能使用
   urlConfig, 

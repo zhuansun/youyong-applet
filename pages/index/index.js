@@ -11,13 +11,14 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     current: 0,
-    hasLogin: false
+    hasLogin: false,
+    errorMessage: null
   },
 
   toUse: function(e) {
     console.log("跳转到首页，准备使用了。。。。。。");
     wx.switchTab({
-      url: '../main/index'
+      url: '../home/index'
     })
   },
 
@@ -28,7 +29,7 @@ Page({
         const _this = this;
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         wx.request({
-          url: app.urlConfig.basePath + '/api/user/sign/in',
+          url: app.urlConfig.basePath + '/api/user/login',
           data: {
             code: res.code
           },
@@ -63,7 +64,6 @@ Page({
               hasLogin: true
             })
             //将token保存下来
-            wx.setStorageSync('token', "0000")
             $Message({
               content: "请求失败",
               type: 'error'
@@ -106,11 +106,17 @@ Page({
     }
 
     let token = wx.getStorageSync('token');
-    console.log(token);
+    console.log("token___"+token);
     if (token) {
       //token存在,直接跳转首页
       this.toUse();
     }
+
+    //有可能是用其他页面跳转过来的，需要设置errorMessage
+    this.setData({
+      errorMessage: app.globalData.errorMessage
+    })
+
   },
 
 

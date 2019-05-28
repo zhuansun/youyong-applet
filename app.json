@@ -1,14 +1,15 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/main/index",
+    "pages/home/index",
     "pages/mine/index"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "sssss",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#999999",
@@ -17,7 +18,7 @@
     "backgroundColor": "#fff",
     "list": [
       {
-        "pagePath": "pages/main/index",
+        "pagePath": "pages/home/index",
         "iconPath": "assets/images/iconfont-home.png",
         "selectedIconPath": "assets/images/iconfont-home-active.png",
         "text": "首页"

@@ -1,4 +1,5 @@
 
+<i-message id="message" />
 
 <i-modal title="标题" visible="{{ visible }}" bind:ok="handleOk" bind:cancel="handleClose">
     <view>一些文本</view>
@@ -6,9 +7,9 @@
     <view>一些文本</view>
 </i-modal>
 
-<scroll-view scroll-y="true" style="height:{{ (deviceHeight) + 'px' }}">
+<scroll-view scroll-y="true" style="height:{{ (deviceHeight) + 'px' }}" bindscrolltolower="getMore" bindscrolltoupper="onRefresh">
 
-  <i-panel title="{{data.classify}}"></i-panel>
+  <i-panel title="欢迎您的使用"></i-panel>
   <i-row>
     <i-col i-class="color-col" span="12" wx:for="{{data.list}}" wx:key="id">
       <i-card i-class="color">
