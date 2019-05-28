@@ -1,6 +1,4 @@
 
-<i-message id="message" />
-
 <i-modal title="标题" visible="{{ visible }}" bind:ok="handleOk" bind:cancel="handleClose">
     <view>一些文本</view>
     <view>一些文本</view>

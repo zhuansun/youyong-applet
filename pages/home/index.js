@@ -141,7 +141,6 @@ Page({
   getModuleList: function() {
     //获取token
     let token = wx.getStorageSync('token');
-
     console.log(token);
     //将token放在请求头中。进行请求获取
     wx.request({
@@ -158,13 +157,11 @@ Page({
         } else if (res.data.code == 207 || res.data.code == 206) {
           console.log(res.data.msg);
           app.globalData.errorMessage = res.data.msg;
-          console.log(app.globalData.errorMessage);
           //清除token
           wx.removeStorageSync("token");
           wx.redirectTo({
             url: '../index/index',
           })
-          
         } else {
           console.log("服务器失败");
         }
@@ -173,8 +170,6 @@ Page({
         console.log("请求失败");
       }
     })
-
-
 
   }
 })
