@@ -1,21 +1,23 @@
 
+
 <i-modal title="标题" visible="{{ visible }}" bind:ok="handleOk" bind:cancel="handleClose">
     <view>一些文本</view>
     <view>一些文本</view>
     <view>一些文本</view>
 </i-modal>
 
-<scroll-view scroll-y="true" style="height:{{ (deviceHeight) + 'px' }}" bindscrolltolower="getMore" bindscrolltoupper="onRefresh">
+<scroll-view scroll-y="true" style="height:{{ (deviceHeight) + 'px' }}" bindscrolltolower="getMore" lower-threshold='30' scroll-with-animation='true' >
 
   <i-panel title="欢迎您的使用"></i-panel>
   <i-row>
-    <i-col i-class="color-col" span="12" wx:for="{{data.list}}" wx:key="id">
+    <i-col i-class="color-col" span="12" wx:for="{{dataList}}" wx:key="id">
       <i-card i-class="color">
-        <view id="{{item.id}}" slot="content" class="color-item {{item.color}}" bindtap="clickToUseFunction">
-          <view class="color-item-title">{{item.title}}</view>
-          <view class="color-item-content">{{item.content}}</view>
+        <view id="{{item.id}}" slot="content" class="color-item {{item.colorClass}}" bindtap="clickToUseFunction">
+          <view class="color-item-title">{{item.name}}</view>
+          <view class="color-item-content">{{item.description}}</view>
         </view>
       </i-card>
     </i-col>
   </i-row>
+  <i-load-more loading="{{ paginate.hasNext }}" />
 </scroll-view>

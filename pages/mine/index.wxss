@@ -17,5 +17,6 @@
 }
 
 .showDetail {
-  margin-top: 260px;
+  margin-top: 95%;
+  font-size: 15px
 }
