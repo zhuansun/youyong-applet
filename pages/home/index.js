@@ -8,6 +8,12 @@ Page({
     class: 'success',
     visible: false,
     dataList: [],
+    data: {
+      title: null,
+      context1: null,
+      context2: null,
+      context3: null
+    },
     paginate: {
       page: 1,
       pageSize: 20,
@@ -32,15 +38,80 @@ Page({
     this.getModuleList(this.data.paginate.page);
   },
 
+
+  /**
+   * 点击某一个模块，开始使用模块
+   */
   clickToUseFunction: function(e) {
     console.log(e)
     console.log(e.currentTarget.id);
     console.log(app.urlConfig.basePath)
 
-    this.setData({
-      visible: true
-    });
+    const currentId = e.currentTarget.id;
+    const list = this.data.dataList;
+    let url = null;
+    for (var i = 0; i < list.length; i++){
+      console.log("--->list-id:"+list[i].id);
+      if (list[i].id == currentId){
+        console.log(list[i].url);
+        url = list[i].url;
+        break;
+      }
+    }
 
+    console.log("获取到请求接口：" + app.urlConfig.basePath+url)
+
+    const _this = this;
+    const token = wx.getStorageSync('token');
+    //将token放在请求头中。进行请求获取
+    wx.request({
+      url: app.urlConfig.basePath + url,
+      method: "POST",
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authorization': token
+      },
+      success(res) {
+        if (res.data.code == 200) {
+          console.log("success");
+          _this.setData({
+            visible: true,
+            data:{
+              title:"获取成功(请截图保存)",
+              context1: "账号: " + res.data.vo.account,
+              context2: "密码: " + res.data.vo.password
+            }
+          })
+        } else if (res.data.code == 207 || res.data.code == 206) {
+          //失败
+          app.globalData.errorMessage = res.data.msg;
+          wx.removeStorageSync("token");
+          wx.redirectTo({
+            url: '../index/index',
+          })
+        } else {
+          console.log("服务器失败");
+          _this.setData({
+            visible: true,
+            data: {
+              title: "获取失败",
+              context1: "今日的免费账号已被获取",
+              context2: "明天再来试试吧"
+            }
+          })
+        }
+      },
+      fail() {
+        _this.setData({
+          visible: true,
+          data: {
+            title: "获取失败",
+            context1: "请求失败",
+            context2: "请稍后再试"
+          }
+        })
+      }
+    })
   },
 
   handleOk: function() {
@@ -90,7 +161,7 @@ Page({
   //获取首页数据，进行加载
   getModuleList: function(currentPage) {
     //获取token
-    let token = wx.getStorageSync('token');
+    const token = wx.getStorageSync('token');
     console.log("---->"+currentPage);
     const _this = this;
     

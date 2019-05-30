@@ -1,9 +1,9 @@
 
 
-<i-modal title="标题" visible="{{ visible }}" bind:ok="handleOk" bind:cancel="handleClose">
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
+<i-modal title="{{data.title}}" visible="{{ visible }}" bind:ok="handleOk" bind:cancel="handleClose">
+    <view wx:if="{{data.context1}}">{{data.context1}}</view>
+    <view wx:if="{{data.context2}}">{{data.context2}}</view>
+    <view wx:if="{{data.context3}}">{{data.context3}}</view>
 </i-modal>
 
 <scroll-view scroll-y="true" style="height:{{ (deviceHeight) + 'px' }}" bindscrolltolower="getMore" lower-threshold='30' scroll-with-animation='true' >
