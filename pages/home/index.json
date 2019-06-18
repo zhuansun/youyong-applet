@@ -5,7 +5,9 @@
     "i-col": "../../dist/col/index",
     "i-panel": "../../dist/panel/index",
     "i-modal": "../../dist/modal/index",
-    "i-load-more": "../../dist/load-more/index"
+    "i-load-more": "../../dist/load-more/index",
+    "i-message": "../../dist/message/index",
+    "i-input": "../../dist/input/index"
   },
 
   "navigationBarBackgroundColor": "#fff",

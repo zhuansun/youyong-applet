@@ -1,0 +1,5 @@
+<i-message id="message" />
+
+<scroll-view scroll-y="true" style="height:{{ (deviceHeight) + 'px' }}" lower-threshold='30' scroll-with-animation='true' >
+12312312312312
+</scroll-view>

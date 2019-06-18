@@ -1,0 +1,18 @@
+{
+  "usingComponents": {
+    "i-card": "../../../dist/card/index",
+    "i-row": "../../../dist/row/index",
+    "i-col": "../../../dist/col/index",
+    "i-panel": "../../../dist/panel/index",
+    "i-modal": "../../../dist/modal/index",
+    "i-load-more": "../../../dist/load-more/index",
+    "i-message": "../../../dist/message/index",
+    "i-input": "../../../dist/input/index"
+  },
+
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "首页",
+  "disableScroll": true,
+  "enablePullDownRefresh": true
+
+}

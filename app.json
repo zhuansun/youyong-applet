@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/home/index",
-    "pages/mine/index"
+    "pages/mine/index",
+    "pages/modules/xlei/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",

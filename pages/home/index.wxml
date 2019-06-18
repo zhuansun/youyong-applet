@@ -1,10 +1,4 @@
-
-
-<i-modal title="{{data.title}}" visible="{{ visible }}" bind:ok="handleOk" bind:cancel="handleClose">
-    <view wx:if="{{data.context1}}">{{data.context1}}</view>
-    <view wx:if="{{data.context2}}">{{data.context2}}</view>
-    <view wx:if="{{data.context3}}">{{data.context3}}</view>
-</i-modal>
+<i-message id="message" />
 
 <scroll-view scroll-y="true" style="height:{{ (deviceHeight) + 'px' }}" bindscrolltolower="getMore" lower-threshold='30' scroll-with-animation='true' >
 
@@ -12,7 +6,7 @@
   <i-row>
     <i-col i-class="color-col" span="12" wx:for="{{dataList}}" wx:key="id">
       <i-card i-class="color">
-        <view id="{{item.id}}" slot="content" class="color-item {{item.colorClass}}" bindtap="clickToUseFunction">
+        <view id="{{item.id}}" slot="content" class="color-item {{item.colorClass}}" bindtap="clickToUseModule">
           <view class="color-item-title">{{item.name}}</view>
           <view class="color-item-content">{{item.description}}</view>
         </view>

@@ -22,6 +22,14 @@ Page({
     })
   },
 
+  toLogin: function (e) {
+    console.log("跳转到首页，准备使用了。。。。。。");
+    wx.switchTab({
+      url: '../index/index'
+    })
+  },
+
+
   login: function(e) {
     //拿到用户的头像信息之后，紧接着请求服务器接口进行登陆
     wx.login({
@@ -76,14 +84,18 @@ Page({
 
 
   onLoad: function() {
-    //1.判断是否有用户的头像信息，2.判断缓存中是否有token
+
+    console.log(app.globalData.userInfo);
+
     if (app.globalData.userInfo) {
+      console.log("111111111");
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true,
         current: 1
       })
     } else if (this.data.canIUse) {
+      console.log("22222222");
       app.userInfoReadyCallback = res => {
         this.setData({
           userInfo: res.userInfo,
@@ -92,6 +104,7 @@ Page({
         })
       }
     } else {
+      console.log("3333333");
       wx.getUserInfo({
         success: res => {
           console.log(res.userInfo);
@@ -106,9 +119,10 @@ Page({
     }
 
     let token = wx.getStorageSync('token');
-    console.log("token___"+token);
-    if (token) {
-      //token存在,直接跳转首页
+    console.log("token:"+token);
+
+    console.log("44444-->" + (app.globalData.userInfo && token));
+    if (app.globalData.userInfo && token) {
       this.toUse();
     }
 
