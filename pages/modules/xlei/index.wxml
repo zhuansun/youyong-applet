@@ -1,5 +1,23 @@
 <i-message id="message" />
 
+
+
 <scroll-view scroll-y="true" style="height:{{ (deviceHeight) + 'px' }}" lower-threshold='30' scroll-with-animation='true' >
-12312312312312
+
+<i-panel title="账号">
+    <i-cell title="{{data.account}}" value="点击复制" bind:click="copyAccountToClipboard"></i-cell>
+</i-panel>
+
+<i-panel title="密码">
+    <i-cell title="{{data.password}}" value="点击复制" bind:click="copyPasswordToClipboard"></i-cell>
+</i-panel>
+
+<view><i-button bind:click="getRecentTenAccount" type="info" disabled="{{diasbleBtn}}">查看最近10条历史账号</i-button></view>
+
+<i-cell-group wx:if="{{dataList != null}}" wx:for="{{dataList}}" wx:key="id">
+    <i-cell title="{{item.dateStr}}" label="账号：{{item.account}}  密码：{{item.password}}" ></i-cell>
+</i-cell-group>
+
 </scroll-view>
+
+

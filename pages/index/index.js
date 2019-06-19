@@ -12,7 +12,8 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     current: 0,
     hasLogin: false,
-    errorMessage: null
+    errorMessage: null,
+    loadingLogin: false
   },
 
   toUse: function(e) {
@@ -31,6 +32,10 @@ Page({
 
 
   login: function(e) {
+
+    this.setData({
+      loadingLogin:true
+    })
     //拿到用户的头像信息之后，紧接着请求服务器接口进行登陆
     wx.login({
       success: res => {
@@ -65,17 +70,19 @@ Page({
                 type: 'error'
               });
             }
+            _this.setData({
+              loadingLogin: false
+            })
           },
           fail() {
-            _this.setData({
-              current: 2,
-              hasLogin: true
-            })
             //将token保存下来
             $Message({
               content: "请求失败",
               type: 'error'
             });
+            _this.setData({
+              loadingLogin: false
+            })
           }
         })
       }
@@ -84,18 +91,15 @@ Page({
 
 
   onLoad: function() {
-
-    console.log(app.globalData.userInfo);
-
+    const app = getApp()
+    console.log("userinfo"+app.globalData.userInfo);
     if (app.globalData.userInfo) {
-      console.log("111111111");
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true,
         current: 1
       })
     } else if (this.data.canIUse) {
-      console.log("22222222");
       app.userInfoReadyCallback = res => {
         this.setData({
           userInfo: res.userInfo,
@@ -104,7 +108,6 @@ Page({
         })
       }
     } else {
-      console.log("3333333");
       wx.getUserInfo({
         success: res => {
           console.log(res.userInfo);
@@ -120,12 +123,12 @@ Page({
 
     let token = wx.getStorageSync('token');
     console.log("token:"+token);
+    console.log("userinfo:" + this.data.hasUserInfo);
 
     console.log("44444-->" + (app.globalData.userInfo && token));
     if (app.globalData.userInfo && token) {
       this.toUse();
     }
-
     //有可能是用其他页面跳转过来的，需要设置errorMessage
     this.setData({
       errorMessage: app.globalData.errorMessage

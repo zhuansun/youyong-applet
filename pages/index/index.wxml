@@ -51,8 +51,8 @@
       </i-steps>
     </view>
     <view>
-      <i-button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" type="primary" bind:getuserinfo="getUserAvatarAndName">获取头像昵称</i-button>
-      <i-button wx:elif="{{hasUserInfo && !hasLogin}}" type="primary" bind:click="login">登陆</i-button>
+      <i-button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" type="primary" bind:getuserinfo="getUserAvatarAndName" >获取头像昵称</i-button>
+      <i-button wx:elif="{{hasUserInfo && !hasLogin}}" type="primary" bind:click="login" loading="{{loadingLogin}}" >登陆</i-button>
       <i-button wx:elif="{{hasUserInfo && hasLogin}}" type="primary" bind:click="toUse">开始使用</i-button>
     </view>
   </view>

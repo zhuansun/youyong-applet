@@ -3,12 +3,13 @@
     "pages/index/index",
     "pages/home/index",
     "pages/mine/index",
-    "pages/modules/xlei/index"
+    "pages/modules/xlei/index",
+    "pages/modules/blname/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "sssss",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },

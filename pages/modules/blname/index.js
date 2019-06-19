@@ -8,8 +8,10 @@ Page({
   data: {
     deviceHeight: null,
     dataList: [],
-    data: {},
-    diasbleBtn: false
+    lodding: false,
+    gameName: null,
+    count: null
+
   },
 
   getSystemInfo: function() {
@@ -25,51 +27,7 @@ Page({
   },
 
   onLoad: function(options) {
-    this.setData({
-      diasbleBtn: false
-    })
     this.getSystemInfo();
-    console.log(options.module_id);
-    this.getModuleDetail(options.module_id);
-  },
-
-  /**
-   * 点击某一个模块，开始使用模块
-   */
-  getModuleDetail: function(moduleId) {
-    const _this = this;
-    const token = wx.getStorageSync('token');
-    //将token放在请求头中。进行请求获取
-    wx.request({
-      url: app.urlConfig.basePath + "/api/module/detail",
-      method: "POST",
-      data: {
-        'id': moduleId
-      },
-      header: {
-        'content-type': 'application/json', // 默认值
-        'authorization': token
-      },
-      success(res) {
-        if (res.data.code == 200) {
-          console.log(res.data.vo)
-          console.log(res.data.vo.url)
-          _this.getModuleData(res.data.vo.url)
-        } else if (res.data.code == 207 || res.data.code == 206) {
-          //失败
-          app.globalData.errorMessage = res.data.msg;
-          wx.removeStorageSync("token");
-          wx.redirectTo({
-            url: '../../index/index',
-          })
-        } else {
-          console.log("服务器失败");
-        }
-      },
-      fail() {
-        console.log("服务器失败");
-      }
-    })
   },
 
   getModuleData: function(url) {
@@ -108,15 +66,18 @@ Page({
 
 
   //复制账号到剪切板
-  copyAccountToClipboard: function() {
+  copyToClipboard: function(e) {
+
+  console.log(e.currentTarget.dataset['index'])
+
     const _this = this;
-    console.log(_this.data.data.account);
+    console.log(e.currentTarget.dataset['index']);
     wx.setClipboardData({
-      data: _this.data.data.account,
+      data: e.currentTarget.dataset['index'],
       complete(res) {
         wx.hideToast();
         $Message({
-          content: "账号已经复制到剪切板",
+          content: "已经复制到剪切板",
           type: 'success'
         });
       }
@@ -139,15 +100,23 @@ Page({
     })
   },
 
+  startGenerate: function() {
+    console.log("开始生成");
 
-  getRecentTenAccount: function(){
-    console.log("互殴最近十条只能怪好");
+    this.setData({
+      lodding: true
+    })
+
     const _this = this;
     const token = wx.getStorageSync('token');
     //将token放在请求头中。进行请求获取
     wx.request({
-      url: app.urlConfig.basePath + "/xlei/account/history",
+      url: app.urlConfig.basePath + "/blank/name/generate",
       method: "POST",
+      data: {
+        "name": _this.data.gameName,
+        "count": _this.data.count
+      },
       header: {
         'content-type': 'application/json', // 默认值
         'authorization': token
@@ -158,9 +127,6 @@ Page({
           _this.setData({
             dataList: res.data.voList
           })
-          _this.setData({
-            diasbleBtn: true
-          })
         } else if (res.data.code == 207 || res.data.code == 206) {
           //失败
           app.globalData.errorMessage = res.data.msg;
@@ -170,11 +136,38 @@ Page({
           })
         } else {
           console.log("服务器失败");
+          $Message({
+            content: res.data.msg,
+            type: 'error'
+          });
         }
+        _this.setData({
+          lodding: false
+        })
       },
       fail() {
-
+        _this.setData({
+          lodding: false
+        })
+        $Message({
+          content: "请求失败",
+          type: 'error'
+        });
       }
     })
-  }
+  },
+
+  inputGameName: function(e) {
+    console.log(e.detail.detail.value)
+    this.setData({
+      gameName: e.detail.detail.value
+    })
+  },
+
+  inputBlankCount: function(e) {
+    this.setData({
+      count: e.detail.detail.value
+    })
+  },
+
 })

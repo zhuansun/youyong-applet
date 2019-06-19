@@ -6,6 +6,7 @@ Page({
   data: {
     deviceHeight: null,
     dataList: [],
+    spinShow: false,
     paginate: {
       page: 1,
       pageSize: 20,
@@ -87,6 +88,11 @@ Page({
 
   //获取首页数据，进行加载
   getModuleList: function(currentPage) {
+    
+    this.setData({
+      spinShow: true
+    })
+
     //获取token
     const token = wx.getStorageSync('token');
     console.log("---->"+currentPage);
@@ -138,9 +144,15 @@ Page({
         } else {
           console.log("服务器失败");
         }
+        _this.setData({
+          spinShow: false
+        })
       },
       fail() {
         console.log("请求失败");
+        _this.setData({
+          spinShow: false
+        })
       }
     })
 

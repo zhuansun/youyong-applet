@@ -1,0 +1,34 @@
+<i-message id="message" />
+
+<scroll-view scroll-y="true" style="height:{{ (deviceHeight) + 'px' }}" lower-threshold='30' scroll-with-animation='true' >
+
+
+<i-panel title="开始生成">
+    <i-input value="{{ blankName.gameName }}" title="游戏名" autofocus placeholder="请输入游戏名"  bind:change="inputGameName" />
+    <i-input value="{{ blankName.count }}" type="number" title="空格数" placeholder="请输入掺杂的空格数量" bind:change="inputBlankCount" />
+</i-panel>
+
+
+
+<view><i-button bind:click="startGenerate" type="info" loading="{{lodding}}">开始生成</i-button></view>
+
+
+
+<view class="caption-wrap">
+    <i-collapse>
+        <i-collapse-item title="点击查看注意事项" name="tips">
+            <view slot="content">
+                <view style="font-size:12px">1.游戏名不支持特殊字符、表情等</view>
+                <view style="font-size:12px">2.游戏名汉字个数 + 空格个数 不能超过6个</view>
+            </view>
+        </i-collapse-item>
+    </i-collapse>
+</view>
+
+
+
+<i-cell-group wx:if="{{dataList != null}}" wx:for="{{dataList}}" wx:key="id">
+    <i-cell data-index="{{item}}" title="{{item}}" value="点击复制" bind:click="copyToClipboard"></i-cell>
+</i-cell-group>
+
+</scroll-view>

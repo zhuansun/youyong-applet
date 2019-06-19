@@ -1,5 +1,6 @@
 <i-message id="message" />
 
+
 <scroll-view scroll-y="true" style="height:{{ (deviceHeight) + 'px' }}" bindscrolltolower="getMore" lower-threshold='30' scroll-with-animation='true' >
 
   <i-panel title="欢迎您的使用"></i-panel>
@@ -14,4 +15,5 @@
     </i-col>
   </i-row>
   <i-load-more loading="{{ paginate.hasNext }}" />
+  <i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin>
 </scroll-view>
