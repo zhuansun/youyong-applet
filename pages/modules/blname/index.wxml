@@ -4,8 +4,8 @@
 
 
 <i-panel title="开始生成">
-    <i-input value="{{ blankName.gameName }}" title="游戏名" autofocus placeholder="请输入游戏名"  bind:change="inputGameName" />
-    <i-input value="{{ blankName.count }}" type="number" title="空格数" placeholder="请输入掺杂的空格数量" bind:change="inputBlankCount" />
+    <i-input value="{{ gameName }}" title="游戏名" autofocus placeholder="请输入游戏名"  bind:change="inputGameName" />
+    <i-input value="{{ count }}" type="number" title="空格数" placeholder="请输入掺杂的空格数量" bind:change="inputBlankCount" />
 </i-panel>
 
 
@@ -16,10 +16,11 @@
 
 <view class="caption-wrap">
     <i-collapse>
-        <i-collapse-item title="点击查看注意事项" name="tips">
+        <i-collapse-item title="使用方法及注意事项" name="tips">
             <view slot="content">
-                <view style="font-size:12px">1.游戏名不支持特殊字符、表情等</view>
-                <view style="font-size:12px">2.游戏名汉字个数 + 空格个数 不能超过6个</view>
+                <view style="font-size:12px">1.使用方法关注公众号【文艺小卿年】,回复【空格游戏名】可获得</view>
+                <view style="font-size:12px">2.游戏名不支持特殊字符、表情等</view>
+                <view style="font-size:12px">3.游戏名汉字个数 + 空格个数 不能超过6个</view>
             </view>
         </i-collapse-item>
     </i-collapse>

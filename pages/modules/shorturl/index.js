@@ -7,10 +7,20 @@ const app = getApp()
 Page({
   data: {
     deviceHeight: null,
-    dataList: [],
+    shortUrl: null,
     lodding: false,
-    gameName: null,
-    count: null
+    longUrl: null,
+    type: null,
+    typeArray: [{
+        id: 1,
+        name: "百度短连接"
+      },
+      {
+        id: 2,
+        name: "新浪短连接"
+      }
+    ],
+    inputTypeName: null
 
   },
 
@@ -65,15 +75,12 @@ Page({
   },
 
 
-  //复制游戏名到剪切板
-  copyToClipboard: function(e) {
-
-    console.log(e.currentTarget.dataset['index'])
-
+  //复制到剪切板
+  copyToClipboard: function() {
     const _this = this;
-    console.log(e.currentTarget.dataset['index']);
+    console.log(_this.data.shortUrl);
     wx.setClipboardData({
-      data: e.currentTarget.dataset['index'],
+      data: _this.data.shortUrl,
       complete(res) {
         wx.hideToast();
         $Message({
@@ -83,7 +90,6 @@ Page({
       }
     })
   },
-
 
   startGenerate: function() {
     console.log("开始生成");
@@ -96,21 +102,25 @@ Page({
     const token = wx.getStorageSync('token');
     //将token放在请求头中。进行请求获取
     wx.request({
-      url: app.urlConfig.basePath + "/blank/name/generate",
+      url: app.urlConfig.basePath + "/short/url",
       method: "POST",
       data: {
-        "name": _this.data.gameName,
-        "count": _this.data.count
+        "longUrl": _this.data.longUrl,
+        "type": _this.data.type
       },
+      // data: {
+      //   "longUrl": "https://blog.csdn.net/qq_24821203",
+      //   "type": 1
+      // },
       header: {
         'content-type': 'application/json', // 默认值
         'authorization': token
       },
       success(res) {
         if (res.data.code == 200) {
-          console.log("success");
+          console.log("success", res.data.vo);
           _this.setData({
-            dataList: res.data.voList
+            shortUrl: res.data.vo
           })
         } else if (res.data.code == 207 || res.data.code == 206) {
           //失败
@@ -142,17 +152,21 @@ Page({
     })
   },
 
-  inputGameName: function(e) {
+  inputLongUrl: function(e) {
     console.log(e.detail.detail.value)
     this.setData({
-      gameName: e.detail.detail.value
+      longUrl: e.detail.detail.value
     })
   },
 
-  inputBlankCount: function(e) {
+  inputType: function(e) {
+    console.log(e.detail.value)
+    const _this = this;
     this.setData({
-      count: e.detail.detail.value
+      type: _this.data.typeArray[e.detail.value].id,
+      inputTypeName: _this.data.typeArray[e.detail.value].name
     })
   },
+
 
 })

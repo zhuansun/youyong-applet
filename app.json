@@ -4,7 +4,8 @@
     "pages/home/index",
     "pages/mine/index",
     "pages/modules/xlei/index",
-    "pages/modules/blname/index"
+    "pages/modules/blname/index",
+    "pages/modules/shorturl/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",

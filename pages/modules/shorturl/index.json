@@ -1,0 +1,23 @@
+{
+  "usingComponents": {
+    "i-card": "../../../dist/card/index",
+    "i-row": "../../../dist/row/index",
+    "i-col": "../../../dist/col/index",
+    "i-panel": "../../../dist/panel/index",
+    "i-modal": "../../../dist/modal/index",
+    "i-load-more": "../../../dist/load-more/index",
+    "i-message": "../../../dist/message/index",
+    "i-input": "../../../dist/input/index",
+    "i-button": "../../../dist/button/index",
+    "i-cell-group": "../../../dist/cell-group/index",
+    "i-cell": "../../../dist/cell/index",
+    "i-collapse": "../../../dist/collapse/index",
+    "i-collapse-item": "../../../dist/collapse-item/index"
+  },
+
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "长短连接转换",
+  "disableScroll": true,
+  "enablePullDownRefresh": true
+
+}

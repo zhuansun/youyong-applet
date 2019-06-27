@@ -1,0 +1,42 @@
+<i-message id="message" />
+
+
+
+<scroll-view scroll-y="true" style="height:{{ (deviceHeight) + 'px' }}" lower-threshold='30' scroll-with-animation='true'>
+
+  <i-panel title="开始生成">
+    <i-input value="{{ longUrl }}" title="长链接" autofocus placeholder="请输入待转换的长链接" bind:change="inputLongUrl" />
+
+    <picker bindchange="inputType" value="{{index}}" range="{{typeArray}}" range-key="name">
+      <view class="picker">
+        <!-- 当前选择：{{array[index]}} -->
+        <i-input type="text" disabled="true" value="{{ inputTypeName }}" title="类型" placeholder="请选择短连接的生成类型" />
+        <!-- <i-cell title="{{typeArray[index].name}}" value="{{typeArray[index].name}}" ></i-cell> -->
+      </view>
+    </picker>
+  </i-panel>
+
+
+
+  <view>
+    <i-button bind:click="startGenerate" type="info" loading="{{lodding}}">开始生成</i-button>
+  </view>
+
+
+
+ <view class="caption-wrap">
+    <i-collapse>
+        <i-collapse-item title="使用方法及注意事项" name="tips">
+            <view slot="content">
+                <view style="font-size:12px">1.使用方法关注公众号【文艺小卿年】,回复【长短链接转换】可获得</view>
+            </view>
+        </i-collapse-item>
+    </i-collapse>
+</view>
+
+
+  <i-cell-group wx:if="{{shortUrl != null}}">
+    <i-cell title="{{shortUrl}}" value="点击复制" bind:click="copyToClipboard"></i-cell>
+  </i-cell-group>
+
+</scroll-view>
